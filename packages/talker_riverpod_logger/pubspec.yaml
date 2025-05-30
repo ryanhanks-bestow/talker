@@ -16,6 +16,7 @@ environment:
 
 dependencies:
   talker: ^4.8.0
+  # riverpod: ^2.5.0
   riverpod: ^3.0.0-dev.15
   meta: ^1.8.0
 
