@@ -33,9 +33,11 @@ class TalkerRiverpodObserver extends ProviderObserver {
     if (!accepted) {
       return;
     }
+
     _talker.logCustom(
       RiverpodAddLog(
         provider: context.provider,
+        argument: context.provider.argument,
         value: value,
         settings: settings,
       ),
@@ -64,6 +66,7 @@ class TalkerRiverpodObserver extends ProviderObserver {
     _talker.logCustom(
       RiverpodUpdateLog(
         provider: context.provider,
+        argument: context.provider.argument,
         previousValue: previousValue,
         newValue: newValue,
         settings: settings,
@@ -87,6 +90,7 @@ class TalkerRiverpodObserver extends ProviderObserver {
     _talker.logCustom(
       RiverpodDisposeLog(
         provider: context.provider,
+        argument: context.provider.argument,
         settings: settings,
       ),
     );
@@ -110,6 +114,7 @@ class TalkerRiverpodObserver extends ProviderObserver {
     _talker.logCustom(
       RiverpodFailLog(
         provider: context.provider,
+        argument: context.provider.argument,
         providerError: error,
         providerStackTrace: stackTrace,
         settings: settings,
