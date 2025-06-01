@@ -4,14 +4,14 @@ import 'package:talker_riverpod_logger/talker_riverpod_logger.dart';
 
 String _defaultMessage({
   required ProviderBase<Object?> provider,
-  required String suffix,
+  // required String suffix,
   Object? argument,
 }) {
   if (provider.name == null) {
-    return '${provider.runtimeType} $suffix';
+    return '${provider.runtimeType}';
   }
 
-  return '${provider.name} ${argument != null ? ' – $argument' : ''}  | ${provider.runtimeType} $suffix';
+  return '${provider.name} ${argument != null ? ' – $argument' : ''}';
 }
 
 /// [Riverpod] add provider log model
@@ -25,7 +25,6 @@ class RiverpodAddLog extends TalkerLog {
           _defaultMessage(
             provider: provider,
             argument: argument,
-            suffix: 'initialized',
           ),
         );
 
@@ -62,7 +61,6 @@ class RiverpodUpdateLog extends TalkerLog {
           _defaultMessage(
             provider: provider,
             argument: argument,
-            suffix: 'updated',
           ),
         );
 
@@ -100,7 +98,6 @@ class RiverpodDisposeLog extends TalkerLog {
           _defaultMessage(
             provider: provider,
             argument: argument,
-            suffix: 'disposed',
           ),
         );
 
@@ -134,7 +131,6 @@ class RiverpodFailLog extends TalkerLog {
           _defaultMessage(
             provider: provider,
             argument: argument,
-            suffix: 'failed',
           ),
         );
 
