@@ -1,32 +1,35 @@
-import 'package:riverpod/riverpod.dart';
+import 'package:riverpod/misc.dart';
 import 'package:talker/talker.dart';
 import 'package:talker_riverpod_logger/talker_riverpod_logger.dart';
 
 String _defaultMessage({
   required ProviderBase<Object?> provider,
-  required String suffix,
+  // required String suffix,
+  Object? argument,
 }) {
   if (provider.name == null) {
-    return '${provider.runtimeType} $suffix';
+    return '${provider.runtimeType}';
   }
 
-  return '${provider.name} | ${provider.runtimeType} $suffix';
+  return '${provider.name} ${argument != null ? ' – $argument' : ''}\n${provider.runtimeType}';
 }
 
 /// [Riverpod] add provider log model
 class RiverpodAddLog extends TalkerLog {
   RiverpodAddLog({
     required this.provider,
+    this.argument,
     required this.value,
     required this.settings,
   }) : super(
           _defaultMessage(
             provider: provider,
-            suffix: 'initialized',
+            argument: argument,
           ),
         );
 
   final ProviderBase<Object?> provider;
+  final Object? argument;
   final Object? value;
   final TalkerRiverpodLoggerSettings settings;
 
@@ -53,14 +56,16 @@ class RiverpodUpdateLog extends TalkerLog {
     required this.previousValue,
     required this.newValue,
     required this.settings,
+    this.argument,
   }) : super(
           _defaultMessage(
             provider: provider,
-            suffix: 'updated',
+            argument: argument,
           ),
         );
 
   final ProviderBase<Object?> provider;
+  final Object? argument;
   final Object? previousValue;
   final Object? newValue;
   final TalkerRiverpodLoggerSettings settings;
@@ -88,14 +93,16 @@ class RiverpodDisposeLog extends TalkerLog {
   RiverpodDisposeLog({
     required this.provider,
     required this.settings,
+    this.argument,
   }) : super(
           _defaultMessage(
             provider: provider,
-            suffix: 'disposed',
+            argument: argument,
           ),
         );
 
   final ProviderBase<Object?> provider;
+  final Object? argument;
   final TalkerRiverpodLoggerSettings settings;
 
   @override
@@ -119,14 +126,16 @@ class RiverpodFailLog extends TalkerLog {
     required this.providerError,
     required this.providerStackTrace,
     required this.settings,
+    this.argument,
   }) : super(
           _defaultMessage(
             provider: provider,
-            suffix: 'failed',
+            argument: argument,
           ),
         );
 
   final ProviderBase<Object?> provider;
+  final Object? argument;
   final Object providerError;
   final StackTrace providerStackTrace;
   final TalkerRiverpodLoggerSettings settings;
