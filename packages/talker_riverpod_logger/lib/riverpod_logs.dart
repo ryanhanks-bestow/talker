@@ -11,7 +11,7 @@ String _defaultMessage({
     return '${provider.runtimeType}';
   }
 
-  return '${provider.name} ${argument != null ? ' – $argument' : ''}';
+  return '${provider.name} ${argument != null ? ' – $argument' : ''}\n${provider.runtimeType}';
 }
 
 /// [Riverpod] add provider log model
